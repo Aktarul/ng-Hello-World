@@ -17,6 +17,12 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+# debug log
+npm-debug.log
+
+# Node modules
+node_modules
+
 # =========================
 # Operating System Files
 # =========================
