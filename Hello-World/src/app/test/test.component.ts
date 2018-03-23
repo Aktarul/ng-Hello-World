@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'app-test',
@@ -95,9 +96,15 @@ import { Component, OnInit } from '@angular/core';
       <div *ngSwitchDefault>Pick again</div>
     </div>
       <!-- ngFor -->
-      <div *ngFor = "let Color of colors; index as i; first as f; last as l; odd as o">
-        <h2>{{ i }} {{ Color }} First: {{ f }} Last: {{ l }} Odd: {{ o }} </h2>
-      </div>
+    <div *ngFor = "let Color of colors; index as i; first as f; last as l; odd as o">
+      <h2>{{ i }} {{ Color }} First: {{ f }} Last: {{ l }} Odd: {{ o }} </h2>
+    </div><hr><br>
+
+  <!-- Component Interaction -->
+  <h3 class="header"> Component Interaction </h3>
+  <h2> {{"Hello " + parentData }} </h2>
+  <button (click)="fireEvent()">Send Event</button>
+  <h3> {{ showMessage }} </h3>
   `,
 
   styles: [`
@@ -154,6 +161,10 @@ export class TestComponent implements OnInit {
   color = 'orange';
   public colors = ['red', 'blue', 'green', 'yellow'];
 
+  @Input() public parentData;
+  @Output() public childEvent = new EventEmitter();
+  public showMessage = '';
+
   constructor() { }
 
   ngOnInit() {
@@ -182,6 +193,11 @@ export class TestComponent implements OnInit {
     this.showText = false;
     this.showHideButton = false;
     this.showShowButton = true;
+  }
+
+  fireEvent() {
+    this.childEvent.emit(' Hey Everyone!');
+    this.showMessage = 'Watch change at the top.';
   }
 
 }
