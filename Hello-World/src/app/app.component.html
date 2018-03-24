@@ -4,7 +4,6 @@
     {{ message }}<br>
     Welcome to {{ title }}!
   </h1>
-  <app-test (childEvent) = "message=$event" bind-parentData ="name"></app-test>
+  <app-test></app-test>
+  <app-test2 (childEvent) = "message=$event" bind-parentData ="name"></app-test2>
 </div>
-
-

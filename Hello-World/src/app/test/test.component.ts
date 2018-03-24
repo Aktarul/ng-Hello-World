@@ -44,8 +44,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <h3 class="header"> Event Binding </h3>
   <button (click)="onClick($event)"> Greet </button>
     {{typeEvent}}<br>{{ greeting }}<br>
-  <button (click)="greeting='Hello World'"> Another Greet </button><hr><br>
-
+  <button (click)="greeting='Hello World'"> Another Greet </button>
+  <hr><br>
   <!-- Template Reference Variables -->
   <h3 class="header"> Template Reference Variables </h3>
   <input #myInput type="text">
@@ -54,57 +54,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <!-- Two Way Binding-->
   <h3 class="header"> Two Way Binding </h3>
   <input [(ngModel)]="newName" type="text">
-  {{ newName }}<hr><br>
-
-  <!-- Structural Directives -->
-  <h3 class="header"> Structural Directives </h3>
-    <!-- ngIf -->
-  <h2 *ngIf="displayValue">
-    Hello World
-  </h2>
-  <button (click)="clickShow()" *ngIf="showShowButton">Show</button>
-  <button (click)="clickHide()" *ngIf="showHideButton">Hide</button>
-  <h2 *ngIf="showText">
-    Now Showing the text
-  </h2>
-  <h2 *ngIf="displayValue2; else elseBlock">
-    Hello World
-  </h2>
-  <ng-template #elseBlock>
-    <h2>
-      the hidden text
-    </h2>
-  </ng-template>
-
-  <div *ngIf="displayValue3; then thenPart; else elsePart"></div>
-  <ng-template #thenPart>
-    <h2>
-      Then Part
-    </h2>
-  </ng-template>
-
-  <ng-template #elsePart>
-    <h2>
-      Else Part
-    </h2>
-  </ng-template>
-      <!-- ngSwitch -->
-    <div [ngSwitch]='color'>
-      <div *ngSwitchCase="'red'">You picked Red color</div>
-      <div *ngSwitchCase="'blue'">You picked Blue color</div>
-      <div *ngSwitchCase="'green'">You picked Green color</div>
-      <div *ngSwitchDefault>Pick again</div>
-    </div>
-      <!-- ngFor -->
-    <div *ngFor = "let Color of colors; index as i; first as f; last as l; odd as o">
-      <h2>{{ i }} {{ Color }} First: {{ f }} Last: {{ l }} Odd: {{ o }} </h2>
-    </div><hr><br>
-
-  <!-- Component Interaction -->
-  <h3 class="header"> Component Interaction </h3>
-  <h2> {{"Hello " + parentData }} </h2>
-  <button (click)="fireEvent()">Send Event</button>
-  <h3> {{ showMessage }} </h3>
+  {{ newName }}
+  <hr><br>
   `,
 
   styles: [`
@@ -152,22 +103,13 @@ export class TestComponent implements OnInit {
 
   public newName = '';
 
-  displayValue = true;
-  showText = true;
-  showHideButton = true;
-  showShowButton = false;
-  displayValue2 = false;
-  displayValue3 = true;
-  color = 'orange';
-  public colors = ['red', 'blue', 'green', 'yellow'];
-
-  @Input() public parentData;
-  @Output() public childEvent = new EventEmitter();
-  public showMessage = '';
-
   constructor() { }
 
   ngOnInit() {
+  }
+
+  logMessage(value) {
+    console.log(value);
   }
 
   greetUser() {
@@ -178,26 +120,6 @@ export class TestComponent implements OnInit {
     console.log(event);
     this.greeting = 'Welcome to my first Angular App!';
     this.typeEvent = 'this is a ' + event.type + ' event.';
-  }
-
-  logMessage(value) {
-    console.log(value);
-  }
-
-  clickShow() {
-    this.showText = true;
-    this.showHideButton = true;
-    this.showShowButton = false;
-  }
-  clickHide() {
-    this.showText = false;
-    this.showHideButton = false;
-    this.showShowButton = true;
-  }
-
-  fireEvent() {
-    this.childEvent.emit(' Hey Everyone!');
-    this.showMessage = 'Watch change at the top.';
   }
 
 }
