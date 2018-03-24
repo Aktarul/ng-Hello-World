@@ -13,6 +13,13 @@ import { EmployeeService } from './../employee.service';
       <li> {{ employee.name }} </li>
     </h3>
   </ul>
+
+  <h2> Employee List 2</h2>
+  <ul *ngFor = "let employee of employees2">
+  <h3>
+    <li> {{ employee.name }} </li>
+  </h3>
+  </ul>
   `,
   styleUrls: ['./employee-list.component.css']
 })
@@ -20,13 +27,13 @@ import { EmployeeService } from './../employee.service';
 export class EmployeeListComponent implements OnInit {
 
   public employees = [];
+  public employees2 = [];
 
-  constructor(private _employeeService: EmployeeService ) {
-
-  }
+  constructor(private _employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.employees = this._employeeService.getEmployees();
+    this._employeeService.getEmployees2()
+      .subscribe(data => this.employees2 = data);
   }
-
 }
