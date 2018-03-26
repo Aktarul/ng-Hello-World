@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeDetailComponent } from './../employee-detail/employee-detail.component';
 import { EmployeeService } from './../employee.service';
+import { StudentService } from '../student.service';
 
 @Component({
   selector: 'app-employee-list',
@@ -20,6 +21,13 @@ import { EmployeeService } from './../employee.service';
     <li> {{ employee.name }} </li>
   </h3>
   </ul>
+
+  <h2> Student List </h2>
+  <ul *ngFor = "let student of students">
+  <h3>
+    <li> {{ student.first_name }} {{ student.last_name }} </li>
+  </h3>
+  </ul>
   `,
   styleUrls: ['./employee-list.component.css']
 })
@@ -28,12 +36,16 @@ export class EmployeeListComponent implements OnInit {
 
   public employees = [];
   public employees2 = [];
+  public students = [];
 
-  constructor(private _employeeService: EmployeeService) { }
+  constructor(private _employeeService: EmployeeService, private _studentService: StudentService) { }
 
   ngOnInit() {
-    this.employees = this._employeeService.getEmployees();
-    this._employeeService.getEmployees2()
+    this.employees = this._employeeService.getEmployees();    // without http get()
+
+    this._employeeService.getEmployees2()      // with http get() using employee service
       .subscribe(data => this.employees2 = data);
+
+    this.students = this._studentService.getStudents();          // with only student service
   }
 }

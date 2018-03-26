@@ -7,7 +7,6 @@ import { Observable } from 'rxjs/Observable';
 export class EmployeeService {
 
   private _url = '../assets/data/employees.json';
-  private _url2 = '../assets/data/students.json';
 
   constructor(private http: HttpClient) { }
 

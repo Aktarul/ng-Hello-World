@@ -10,6 +10,7 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import { EmployeeDetailComponent } from './employee-detail/employee-detail.component';
 import { EmployeeService } from './employee.service';
 import { HttpClientModule } from '@angular/common/http';
+import { StudentService } from './student.service';
 
 
 @NgModule({
@@ -26,7 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [EmployeeService],
+  providers: [
+    EmployeeService,
+    StudentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

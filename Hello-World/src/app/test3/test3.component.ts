@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-test3',
   template: `
-  <!-- Dependency Injection -->
-  <h3 class="header"> Dependency Injection </h3>
+  <!--  -->
+  <h3 class="header">  </h3>
   <hr><br>
   `,
   styleUrls: ['./test3.component.css']
