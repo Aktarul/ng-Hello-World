@@ -12,6 +12,7 @@ import { StudentService } from '../student.service';
     </h3>
   </ul>
   <h2> Employee Details 2</h2>
+  <h3> {{ errorMsg }}</h3>
   <ul *ngFor = "let employee of employees2">
     <h3>
       <li> {{ employee.id }}. {{ employee.name }} - {{ employee.age }} </li>
@@ -34,14 +35,16 @@ export class EmployeeDetailComponent implements OnInit {
   public employees = [];
   public employees2 = [];
   public students = [];
+  public errorMsg;
 
   constructor(private _employeeService: EmployeeService, private _studentService: StudentService) { }
 
   ngOnInit() {
     this.employees = this._employeeService.getEmployees();      // without http get()
 
-    this._employeeService.getEmployees2()                // with http get() using employee service
-      .subscribe(data => this.employees2 = data);
+    this._employeeService.getEmployees2()      // with http get() using employee service
+      .subscribe(data => this.employees2 = data,
+                error => this.errorMsg = error);
 
     this.students = this._studentService.getStudents();          // with only student service
   }
